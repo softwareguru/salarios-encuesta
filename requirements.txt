@@ -4,7 +4,7 @@ bokeh==2.4.2
 cachetools==4.2.4
 certifi==2021.10.8
 charset-normalizer==2.0.10
-Django==3.2.11
+Django==5.2.17
 django-debug-toolbar==3.2.4
 django-environ==0.8.1
 django-ipware==2.1.0
