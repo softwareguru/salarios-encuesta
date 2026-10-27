@@ -24,7 +24,7 @@ def hist_plot(df, country="mx"):
     hist_df = pd.DataFrame({ 'obs': hist, 'left': edges[:-1], 'right': edges[1:]})
     hist_df['interval'] = ['%d a %d pesos' % (left, right) for left, right in zip(hist_df['left'], hist_df['right'])]
     src = ColumnDataSource(hist_df)
-    p = figure(plot_height = 400, plot_width = 600, sizing_mode="scale_both", toolbar_location=None)
+    p = figure(height = 400, width = 600, sizing_mode="scale_both", toolbar_location=None)
     p.toolbar.active_drag = None
     p.toolbar.active_scroll = None
     p.title.text = 'Salario de profesionistas de software'
@@ -56,7 +56,7 @@ def exp_plot(df,country="mx"):
 
     src = ColumnDataSource(exp)
 
-    p = figure(x_range=exp_labels, plot_height = 400, plot_width = 600, sizing_mode="scale_both", toolbar_location=None)
+    p = figure(x_range=exp_labels, height = 400, width = 600, sizing_mode="scale_both", toolbar_location=None)
     p.toolbar.active_drag = None
     p.toolbar.active_scroll = None
 
@@ -93,7 +93,7 @@ def english_plot(df,country="mx"):
     engdf = pd.DataFrame(data)
     src = ColumnDataSource(engdf)
 
-    p = figure(x_range=exp_labels, plot_height = 400, plot_width = 600, sizing_mode="scale_both", toolbar_location=None)
+    p = figure(x_range=exp_labels, height = 400, width = 600, sizing_mode="scale_both", toolbar_location=None)
     p.toolbar.active_drag = None
     p.toolbar.active_scroll = None
 
@@ -120,7 +120,7 @@ def english_plot(df,country="mx"):
     return p
 
 def city_table(df):
-    cities = df[(df["profile"] == "godin")].groupby("city")['salarymx', 'experience'].agg(['count', 'median', 'mean'])
+    cities = df[(df["profile"] == "godin")].groupby("city")[['salarymx', 'experience']].agg(['count', 'median', 'mean'])
     cities = cities.reset_index()
     cities.columns = cities.columns.map('_'.join)
 
@@ -181,7 +181,7 @@ def gender_plot(df,country="mx"):
     gender['color'] = ['#1f77b4' if x =='hombre' else '#e617e6' for x in gender['gender']] 
 
     src = ColumnDataSource(gender)
-    p = figure(plot_height = 400, plot_width = 600, sizing_mode="scale_both", toolbar_location=None)
+    p = figure(height = 400, width = 600, sizing_mode="scale_both", toolbar_location=None)
     p.toolbar.active_drag = None
     p.toolbar.active_scroll = None
     p.circle(x='experience', y='median', source=src, size='size', color='color')
@@ -216,7 +216,7 @@ def lang_plot(df,country="mx"):
     logger.info(lang_df.head())
 
     src = ColumnDataSource(lang_df)
-    p = figure(plot_height = 400, plot_width = 600, sizing_mode="scale_both")
+    p = figure(height = 400, width = 600, sizing_mode="scale_both")
     p.toolbar.active_drag = None
     p.toolbar.active_scroll = None
     p.circle(source=src, y='popularidad', x='salario', line_color=None, fill_color=None, size=20)
@@ -228,7 +228,7 @@ def lang_plot(df,country="mx"):
     p.x_range = Range1d(15000, 90000)
 
     labels = LabelSet(source=src, x='salario', y='popularidad', text='lenguaje', level='glyph',
-              x_offset=-10, y_offset=-5, render_mode='canvas', text_font_size='9pt', text_color='#1f77b4')
+              x_offset=-10, y_offset=-5, text_font_size='9pt', text_color='#1f77b4')
     p.add_layout(labels)
 
     hover = HoverTool()

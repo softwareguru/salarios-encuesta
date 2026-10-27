@@ -1,5 +1,5 @@
 CREATE OR REPLACE VIEW answers_view AS
-SELECT s.id, s.created, s.recaptcha_score, 
+SELECT s.id, s.created, 
   ( SELECT if(answer='', 0, cast(answer as signed)) FROM encuesta_answeritem i
     WHERE answerset_id = s.id AND i.slug = 'salarymx') AS salarymx,
   ( SELECT if(answer='', 0, cast(answer as signed)) FROM encuesta_answeritem i
@@ -178,31 +178,58 @@ SELECT s.id, s.created, s.recaptcha_score,
     i.slug = 'prog' AND answer LIKE '%vbnet%' ) AS lang_vbnet,
   ( SELECT 'Y' FROM encuesta_answeritem i
     WHERE i.answerset_id = s.id AND  
+    i.slug = 'mobile' AND answer LIKE '%phonegap%' ) AS mobile_phonegap,
+  ( SELECT 'Y' FROM encuesta_answeritem i
+    WHERE i.answerset_id = s.id AND  
+    i.slug = 'mobile' AND answer LIKE '%flutter%' ) AS mobile_flutter,
+  ( SELECT 'Y' FROM encuesta_answeritem i
+    WHERE i.answerset_id = s.id AND  
+    i.slug = 'mobile' AND answer LIKE '%ionic%' ) AS mobile_ionic,
+  ( SELECT 'Y' FROM encuesta_answeritem i
+    WHERE i.answerset_id = s.id AND  
+    i.slug = 'mobile' AND answer LIKE '%java%' ) AS mobile_java_android,
+  ( SELECT 'Y' FROM encuesta_answeritem i
+    WHERE i.answerset_id = s.id AND  
+    i.slug = 'mobile' AND answer LIKE '%kotlin%' ) AS mobile_java_kotlin,
+  ( SELECT 'Y' FROM encuesta_answeritem i
+    WHERE i.answerset_id = s.id AND  
+    i.slug = 'mobile' AND answer LIKE '%objc%' ) AS mobile_objc,
+  ( SELECT 'Y' FROM encuesta_answeritem i
+    WHERE i.answerset_id = s.id AND  
+    i.slug = 'mobile' AND answer LIKE '%reactnative%' ) AS mobile_reactnative,
+  ( SELECT 'Y' FROM encuesta_answeritem i
+    WHERE i.answerset_id = s.id AND  
+    i.slug = 'mobile' AND answer LIKE '%swift%' ) AS mobile_swift,
+  ( SELECT 'Y' FROM encuesta_answeritem i
+    WHERE i.answerset_id = s.id AND  
+    i.slug = 'mobile' AND answer LIKE '%xamarin%' ) AS mobile_xamarin,
+  ( SELECT 'Y' FROM encuesta_answeritem i
+    WHERE i.answerset_id = s.id AND  
     i.slug = 'front' AND answer LIKE '%angular%' ) AS front_angular,
   ( SELECT 'Y' FROM encuesta_answeritem i
     WHERE i.answerset_id = s.id AND  
-    i.slug = 'front' AND answer LIKE '%phonegap%' ) AS front_phonegap,
+    i.slug = 'front' AND answer LIKE '%django%' ) AS front_django,
   ( SELECT 'Y' FROM encuesta_answeritem i
     WHERE i.answerset_id = s.id AND  
-    i.slug = 'front' AND answer LIKE '%electron%' ) AS front_electron,
+    i.slug = 'front' AND answer LIKE '%laravel%' ) AS front_laravel,
   ( SELECT 'Y' FROM encuesta_answeritem i
     WHERE i.answerset_id = s.id AND  
-    i.slug = 'front' AND answer LIKE '%flutter%' ) AS front_flutter,
-  ( SELECT 'Y' FROM encuesta_answeritem i
-    WHERE i.answerset_id = s.id AND  
-    i.slug = 'front' AND answer LIKE '%ionic%' ) AS front_ionic,
-  ( SELECT 'Y' FROM encuesta_answeritem i
-    WHERE i.answerset_id = s.id AND  
-    i.slug = 'front' AND answer LIKE '%ntscript%' ) AS front_ntscript,
-  ( SELECT 'Y' FROM encuesta_answeritem i
-    WHERE i.answerset_id = s.id AND  
-    i.slug = 'front' AND answer LIKE '%qt%' ) AS front_qt,
+    i.slug = 'front' AND answer LIKE '%nextjs%' ) AS front_nextjs,
   ( SELECT 'Y' FROM encuesta_answeritem i
     WHERE i.answerset_id = s.id AND  
     i.slug = 'front' AND answer LIKE '%react%' ) AS front_react,
   ( SELECT 'Y' FROM encuesta_answeritem i
     WHERE i.answerset_id = s.id AND  
-    i.slug = 'front' AND answer LIKE '%unity%' ) AS front_unity,
+    i.slug = 'front' AND answer LIKE '%ror%' ) AS front_ror,
+  ( SELECT 'Y' FROM encuesta_answeritem i
+    WHERE i.answerset_id = s.id AND  
+    i.slug = 'front' AND answer LIKE '%semanticui%' ) AS front_semanticui,
+  ( SELECT 'Y' FROM encuesta_answeritem i
+    WHERE i.answerset_id = s.id AND  
+    i.slug = 'front' AND answer LIKE '%springboot%' ) AS front_springboot,
+  ( SELECT 'Y' FROM encuesta_answeritem i
+    WHERE i.answerset_id = s.id AND  
+    i.slug = 'front' AND answer LIKE '%svelte%' ) AS front_svelte,
   ( SELECT 'Y' FROM encuesta_answeritem i
     WHERE i.answerset_id = s.id AND  
     i.slug = 'front' AND answer LIKE '%vue%' ) AS front_vue,
@@ -256,7 +283,13 @@ SELECT s.id, s.created, s.recaptcha_score,
     i.slug = 'db' AND answer LIKE '%sap%' ) AS db_sap,
   ( SELECT 'Y' FROM encuesta_answeritem i
     WHERE i.answerset_id = s.id AND  
+    i.slug = 'db' AND answer LIKE '%snowflake%' ) AS db_snowflake,
+  ( SELECT 'Y' FROM encuesta_answeritem i
+    WHERE i.answerset_id = s.id AND  
     i.slug = 'datascience' AND answer LIKE '%alteryx%' ) AS dsc_alteryx,
+  ( SELECT 'Y' FROM encuesta_answeritem i
+    WHERE i.answerset_id = s.id AND  
+    i.slug = 'datascience' AND answer LIKE '%sagemaker%' ) AS dsc_sagemaker,
   ( SELECT 'Y' FROM encuesta_answeritem i
     WHERE i.answerset_id = s.id AND  
     i.slug = 'datascience' AND answer LIKE '%azureml%' ) AS dsc_azureml,
@@ -265,16 +298,37 @@ SELECT s.id, s.created, s.recaptcha_score,
     i.slug = 'datascience' AND answer LIKE '%dataiku%' ) AS dsc_dataiku,
   ( SELECT 'Y' FROM encuesta_answeritem i
     WHERE i.answerset_id = s.id AND  
+    i.slug = 'datascience' AND answer LIKE '%datarobot%' ) AS dsc_datarobot,
+  ( SELECT 'Y' FROM encuesta_answeritem i
+    WHERE i.answerset_id = s.id AND  
     i.slug = 'datascience' AND answer LIKE '%domino%' ) AS dsc_domino,
   ( SELECT 'Y' FROM encuesta_answeritem i
     WHERE i.answerset_id = s.id AND  
     i.slug = 'datascience' AND answer LIKE '%h2o%' ) AS dsc_h2o,
   ( SELECT 'Y' FROM encuesta_answeritem i
     WHERE i.answerset_id = s.id AND  
+    i.slug = 'datascience' AND answer LIKE '%spss%' ) AS dsc_spss,
+  ( SELECT 'Y' FROM encuesta_answeritem i
+    WHERE i.answerset_id = s.id AND  
     i.slug = 'datascience' AND answer LIKE '%watson%' ) AS dsc_watson,
   ( SELECT 'Y' FROM encuesta_answeritem i
     WHERE i.answerset_id = s.id AND  
+    i.slug = 'datascience' AND answer LIKE '%julia%' ) AS dsc_julia,
+  ( SELECT 'Y' FROM encuesta_answeritem i
+    WHERE i.answerset_id = s.id AND  
+    i.slug = 'datascience' AND answer LIKE '%keras%' ) AS dsc_keras,
+  ( SELECT 'Y' FROM encuesta_answeritem i
+    WHERE i.answerset_id = s.id AND  
     i.slug = 'datascience' AND answer LIKE '%knime%' ) AS dsc_knime,
+  ( SELECT 'Y' FROM encuesta_answeritem i
+    WHERE i.answerset_id = s.id AND  
+    i.slug = 'datascience' AND answer LIKE '%matlab%' ) AS dsc_matlab,
+  ( SELECT 'Y' FROM encuesta_answeritem i
+    WHERE i.answerset_id = s.id AND  
+    i.slug = 'datascience' AND answer LIKE '%pytorch%' ) AS dsc_pytorch,
+  ( SELECT 'Y' FROM encuesta_answeritem i
+    WHERE i.answerset_id = s.id AND  
+    i.slug = 'datascience' AND answer LIKE '%rlang%' ) AS dsc_rlang,
   ( SELECT 'Y' FROM encuesta_answeritem i
     WHERE i.answerset_id = s.id AND  
     i.slug = 'datascience' AND answer LIKE '%rapidminer%' ) AS dsc_rapidminer,
@@ -283,34 +337,88 @@ SELECT s.id, s.created, s.recaptcha_score,
     i.slug = 'datascience' AND answer LIKE '%sas%' ) AS dsc_sas,
   ( SELECT 'Y' FROM encuesta_answeritem i
     WHERE i.answerset_id = s.id AND  
+    i.slug = 'datascience' AND answer LIKE '%scikit%' ) AS dsc_scikit,
+  ( SELECT 'Y' FROM encuesta_answeritem i
+    WHERE i.answerset_id = s.id AND  
     i.slug = 'datascience' AND answer LIKE '%tf%' ) AS dsc_tf,
   ( SELECT 'Y' FROM encuesta_answeritem i
     WHERE i.answerset_id = s.id AND  
-    i.slug = 'infrastructure' AND answer LIKE '%ansible%' ) AS infra_ansible,
+    i.slug = 'dataeng' AND answer LIKE '%athena%' ) AS dataeng_athena,
   ( SELECT 'Y' FROM encuesta_answeritem i
     WHERE i.answerset_id = s.id AND  
-    i.slug = 'infrastructure' AND answer LIKE '%chef%' ) AS infra_chef,
+    i.slug = 'dataeng' AND answer LIKE '%airflow%' ) AS dataeng_airflow,
   ( SELECT 'Y' FROM encuesta_answeritem i
     WHERE i.answerset_id = s.id AND  
-    i.slug = 'infrastructure' AND answer LIKE '%docker%' ) AS infra_docker,
+    i.slug = 'dataeng' AND answer LIKE '%beam%' ) AS dataeng_beam,
   ( SELECT 'Y' FROM encuesta_answeritem i
     WHERE i.answerset_id = s.id AND  
-    i.slug = 'infrastructure' AND answer LIKE '%k8s%' ) AS infra_k8s,
+    i.slug = 'dataeng' AND answer LIKE '%spark%' ) AS dataeng_spark,
   ( SELECT 'Y' FROM encuesta_answeritem i
     WHERE i.answerset_id = s.id AND  
-    i.slug = 'infrastructure' AND answer LIKE '%oshift%' ) AS infra_oshift,
+    i.slug = 'dataeng' AND answer LIKE '%databand%' ) AS dataeng_databand,
   ( SELECT 'Y' FROM encuesta_answeritem i
     WHERE i.answerset_id = s.id AND  
-    i.slug = 'infrastructure' AND answer LIKE '%ostack%' ) AS infra_ostack,
+    i.slug = 'dataeng' AND answer LIKE '%dbt%' ) AS dataeng_dbt,
   ( SELECT 'Y' FROM encuesta_answeritem i
     WHERE i.answerset_id = s.id AND  
-    i.slug = 'infrastructure' AND answer LIKE '%puppet%' ) AS infra_puppet,
+    i.slug = 'dataeng' AND answer LIKE '%fivetran%' ) AS dataeng_fivetran,
   ( SELECT 'Y' FROM encuesta_answeritem i
     WHERE i.answerset_id = s.id AND  
-    i.slug = 'infrastructure' AND answer LIKE '%terraform%' ) AS infra_terraform,
+    i.slug = 'dataeng' AND answer LIKE '%greatexp%' ) AS dataeng_greatexp,
   ( SELECT 'Y' FROM encuesta_answeritem i
     WHERE i.answerset_id = s.id AND  
-    i.slug = 'infrastructure' AND answer LIKE '%vmware%' ) AS infra_vmware,
+    i.slug = 'dataeng' AND answer LIKE '%hadoop%' ) AS dataeng_hadoop,
+  ( SELECT 'Y' FROM encuesta_answeritem i
+    WHERE i.answerset_id = s.id AND  
+    i.slug = 'dataeng' AND answer LIKE '%keboola%' ) AS dataeng_keboola,
+  ( SELECT 'Y' FROM encuesta_answeritem i
+    WHERE i.answerset_id = s.id AND  
+    i.slug = 'infra' AND answer LIKE '%ansible%' ) AS infra_ansible,
+  ( SELECT 'Y' FROM encuesta_answeritem i
+    WHERE i.answerset_id = s.id AND  
+    i.slug = 'infra' AND answer LIKE '%chef%' ) AS infra_chef,
+  ( SELECT 'Y' FROM encuesta_answeritem i
+    WHERE i.answerset_id = s.id AND  
+    i.slug = 'infra' AND answer LIKE '%consul%' ) AS infra_consul,
+  ( SELECT 'Y' FROM encuesta_answeritem i
+    WHERE i.answerset_id = s.id AND  
+    i.slug = 'infra' AND answer LIKE '%datadog%' ) AS infra_datadog,
+  ( SELECT 'Y' FROM encuesta_answeritem i
+    WHERE i.answerset_id = s.id AND  
+    i.slug = 'infra' AND answer LIKE '%docker%' ) AS infra_docker,
+  ( SELECT 'Y' FROM encuesta_answeritem i
+    WHERE i.answerset_id = s.id AND  
+    i.slug = 'infra' AND answer LIKE '%dynatrace%' ) AS infra_dynatrace,
+  ( SELECT 'Y' FROM encuesta_answeritem i
+    WHERE i.answerset_id = s.id AND  
+    i.slug = 'infra' AND answer LIKE '%istio%' ) AS infra_istio,
+  ( SELECT 'Y' FROM encuesta_answeritem i
+    WHERE i.answerset_id = s.id AND  
+    i.slug = 'infra' AND answer LIKE '%jenkins%' ) AS infra_jenkins,
+  ( SELECT 'Y' FROM encuesta_answeritem i
+    WHERE i.answerset_id = s.id AND  
+    i.slug = 'infra' AND answer LIKE '%k8s%' ) AS infra_k8s,
+  ( SELECT 'Y' FROM encuesta_answeritem i
+    WHERE i.answerset_id = s.id AND  
+    i.slug = 'infra' AND answer LIKE '%newrelic%' ) AS infra_newrelic,
+  ( SELECT 'Y' FROM encuesta_answeritem i
+    WHERE i.answerset_id = s.id AND  
+    i.slug = 'infra' AND answer LIKE '%oshift%' ) AS infra_oshift,
+  ( SELECT 'Y' FROM encuesta_answeritem i
+    WHERE i.answerset_id = s.id AND  
+    i.slug = 'infra' AND answer LIKE '%ostack%' ) AS infra_ostack,
+  ( SELECT 'Y' FROM encuesta_answeritem i
+    WHERE i.answerset_id = s.id AND  
+    i.slug = 'infra' AND answer LIKE '%puppet%' ) AS infra_puppet,
+  ( SELECT 'Y' FROM encuesta_answeritem i
+    WHERE i.answerset_id = s.id AND  
+    i.slug = 'infra' AND answer LIKE '%spinnaker%' ) AS infra_spinnaker,
+  ( SELECT 'Y' FROM encuesta_answeritem i
+    WHERE i.answerset_id = s.id AND  
+    i.slug = 'infra' AND answer LIKE '%terraform%' ) AS infra_terraform,
+  ( SELECT 'Y' FROM encuesta_answeritem i
+    WHERE i.answerset_id = s.id AND  
+    i.slug = 'infra' AND answer LIKE '%vmware%' ) AS infra_vmware,
   ( SELECT 'Y' FROM encuesta_answeritem i
     WHERE i.answerset_id = s.id AND  
     i.slug = 'certification' AND answer LIKE '%agile%' ) AS cert_agile,
@@ -450,7 +558,12 @@ SELECT s.id, s.created, s.recaptcha_score,
   ( SELECT answer FROM encuesta_answeritem i
     WHERE answerset_id = s.id AND i.slug = 'covid-carga') AS covid_carga,
   ( SELECT answer FROM encuesta_answeritem i
-    WHERE answerset_id = s.id AND i.slug = 'covid-apoyo') AS covid_apoyo
+    WHERE answerset_id = s.id AND i.slug = 'covid-apoyo') AS covid_apoyo,
+  ( SELECT if(answer='', 0, cast(answer as signed)) FROM encuesta_answeritem i
+    WHERE answerset_id = s.id AND i.slug = 'vacaciones') AS vacaciones,
+  ( SELECT if(answer='', 0, cast(answer as signed)) FROM encuesta_answeritem i
+    WHERE answerset_id = s.id AND i.slug = 'aguinaldo') AS aguinaldo
 FROM encuesta_answerset s
 WHERE s.created > DATE_SUB(NOW(), INTERVAL 1 YEAR)
+AND recaptcha_score is NULL 
 ORDER by s.id;
